@@ -1,6 +1,5 @@
 import React from 'react';
 import { TodoList } from './TodoList/TodoList';
-import './TodoApp.css'
 import TodoHeader from './TodoHeader/TodoHeader';
 import TodoForm from './TodoForm/TodoForm';
 
