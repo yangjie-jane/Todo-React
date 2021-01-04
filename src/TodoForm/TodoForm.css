@@ -1,6 +1,12 @@
-.formButton{
-    margin-left: 20;
+.todo-form{
+    background-color: aliceblue;
+    padding: 20px;
 }
-.form{
+
+.todo-form__content{
     display: flex;
+}
+
+.todo-form__content__button{
+    margin-left: 20px;
 }

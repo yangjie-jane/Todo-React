@@ -5,3 +5,7 @@
   list-style-type: none;
   padding: 10px 20px;
 }
+
+.todo-list__li--done{
+  color: darkgreen;
+}

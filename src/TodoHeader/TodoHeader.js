@@ -3,6 +3,6 @@ import './TodoHeader.css'
 
 export default function TodoHeader() {
     return (
-        <h3 class="title">TODO</h3>
+        <h3 class="todo-title">TODO</h3>
     );
 }
