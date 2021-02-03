@@ -1,8 +1,6 @@
-import React from 'react'
-import './TodoHeader.css'
+import React from "react";
+import "./TodoHeader.css";
 
 export default function TodoHeader() {
-    return (
-        <h3 class="todo-title">TODO</h3>
-    );
+  return <h3 className="todo-title">TODO</h3>;
 }

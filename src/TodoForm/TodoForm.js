@@ -1,42 +1,55 @@
-import React, { useState }  from 'react'
-import './TodoForm.css'
+import React, { useState } from "react";
+import "./TodoForm.css";
+import { addTodo } from "../redux/actions";
+import { connect } from "react-redux";
+import { getTodos } from "../redux/selectors";
 
-export default function TodoForm(props){
-    const [text,setText] = useState('');
+function TodoForm(props) {
+  const [text, setText] = useState("");
 
-    const handleChange = (e) => {
-        setText(e.target.value);
+  const handleChange = (e) => {
+    setText(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (text.length === 0) {
+      return;
     }
 
-    const handleSubmit = e => {
-        e.preventDefault();
+    props.addTodo(text);
 
-        if (text.length === 0) {
-            return;
-        }
-        const newItem = {
-            text: text,
-            id: Date.now()
-        };
+    setText("");
+  };
 
-        props.handler(newItem);
-
-        setText('');
-    }
-
-    return (
-        <div class="todo-form">
-            <p> What needs to be done? </p>
-            <form onSubmit={handleSubmit} class="todo-form__content">
-                <input
-                    required type="text"
-                    // id="new-todo"
-                    onChange={handleChange}
-                    value={text}
-                />
-                <button class="todo-form__content__button">
-                    Add #{props.itemsLength + 1}
-                </button>
-            </form>
-        </div>);
+  return (
+    <div className="todo-form">
+      <p> What needs to be done? </p>
+      <form onSubmit={handleSubmit} className="todo-form__content">
+        <input
+          required
+          type="text"
+          // id="new-todo"
+          onChange={handleChange}
+          value={text}
+        />
+        <button className="todo-form__content__button">
+          Add #{props.todos.length + 1}
+        </button>
+      </form>
+    </div>
+  );
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  addTodo: (data) => dispatch(addTodo(data)),
+});
+
+function mapStateToProps(state) {
+  const todos = getTodos(state);
+
+  return { todos };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoForm);
